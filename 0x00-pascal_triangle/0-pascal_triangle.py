@@ -5,15 +5,17 @@ Returns ls representing the Pascal's triangle of n
 
 
 def pascal_triangle(n):
-    if n <= 0:
-        return []
-
     triangle = []
-    p_r = []
-    row = []
-    for i in range(0, n + 1):
-        row = [j > 0 and j < i - 1 and i > 2 and p_r[j-1] +
-               p_r[j] or 1 for j in range(0, i)]
-        p_r = row
-        triangle += [row]
-    return triangle[1:]
+    if not isinstance(n, int) or n <= 0:
+        return triangle
+    
+    for u in range(n):
+        r = []
+        for v in range(u + 1):
+            if v == 0 or v == u:
+                r.append(1)
+            elif u > 0 and v > 0:
+                r.append(triangle[u - 1][v - 1] + triangle[u - 1][v])
+        triangle.append(r)
+    
+    return triangle
