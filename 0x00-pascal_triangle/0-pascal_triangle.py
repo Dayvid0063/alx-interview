@@ -9,11 +9,14 @@ def pascal_triangle(n):
         return []
 
     triangle = []
-    prev = []
-    for u in range(1, n + 1):
-        row = [1] * u
-        for v in range(1, u - 1):
-            row[v] = prev[v - 1] + prev[v]
-        prev = row
+
+    for u in range(n):
+        row = []
+        for v in range(u + 1):
+            if v == 0 or v == u:
+                row.append(1)
+            else:
+                row.append(triangle[u-1][v-1] + triangle[u-1][v])
         triangle.append(row)
+
     return triangle
