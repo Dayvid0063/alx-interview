@@ -10,7 +10,7 @@ def pascal_triangle(n):
     triangle = []
     if not isinstance(n, int) or n <= 0:
         return triangle
-    
+
     for i in range(n):
         r = []
         for v in range(i + 1):
@@ -19,5 +19,5 @@ def pascal_triangle(n):
             elif i > 0 and v > 0:
                 r.append(triangle[i - 1][v - 1] + triangle[i - 1][v])
         triangle.append(r)
-    
+
     return triangle
