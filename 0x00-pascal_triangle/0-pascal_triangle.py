@@ -11,9 +11,9 @@ def pascal_triangle(n):
     triangle = []
     p_r = []
     row = []
-    for u in range(0, n + 1):
-        row = [v > 0 and v < u - 1 and u > 2 and p_r[v-1] +
-               p_r[v] or 1 for v in range(0, u)]
+    for i in range(0, n + 1):
+        row = [j > 0 and j < i - 1 and i > 2 and p_r[j-1] +
+               p_r[j] or 1 for j in range(0, i)]
         p_r = row
         triangle += [row]
     return triangle[1:]
