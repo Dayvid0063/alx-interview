@@ -1,32 +1,28 @@
 #!/usr/bin/node
 const request = require('request');
 const movieId = process.argv[2];
+// Set up the options for the API request
 const categories = {
-  lnk: `https://swapi.dev/api/films/${movieId}/`,
+  url: 'https://swapi-api.hbtn.io/api/films/' + movieId,
   method: 'GET'
 };
 
+// Make the initial request to get the movie details
 request(categories, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    const film = JSON.parse(body);
-    printCharacters(film.characters, 0);
-  } else {
-    console.error('Failed to fetch movie details:', error);
+  if (!error) {
+    const characters = JSON.parse(body).characters;
+    printCharacters(characters, 0);
   }
 });
 
+// Function to print characters recursively
 function printCharacters(characters, index) {
-  if (index >= characters.length) {
-    return;
-  }
-
   request(characters[index], function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      const character = JSON.parse(body);
-      console.log(character.name);
-      printCharacters(characters, index + 1);
-    } else {
-      console.error('Failed to fetch character details:', error);
+    if (!error) {
+      console.log(JSON.parse(body).name);
+      if (index + 1 < characters.length) {
+        printCharacters(characters, index + 1);
+      }
     }
   });
 }
