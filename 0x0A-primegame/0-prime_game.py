@@ -26,14 +26,14 @@ def isWinner(x, nums):
     Returns: The name of the player with the most wins ('Maria' or 'Ben').
     If the winner cannot be determined, returns None.
     """
-    if x or nums is None:
+    if not x or not nums:
         return None
 
     maria_wins = 0
     ben_wins = 0
 
-    for n in nums:
-        primes = get_primes_up_to(n)
+    for n in range(x):
+        primes = get_primes_up_to(nums[n])
 
         if len(primes) % 2 == 0:
             ben_wins += 1
