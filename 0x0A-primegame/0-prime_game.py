@@ -26,7 +26,7 @@ def isWinner(x, nums):
     Returns: The name of the player with the most wins ('Maria' or 'Ben').
     If the winner cannot be determined, returns None.
     """
-    if not x or not nums:
+    if x or nums is None:
         return None
 
     maria_wins = 0
